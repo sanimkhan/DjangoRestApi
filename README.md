@@ -38,10 +38,14 @@ Check- `which python3`
 `pip install -r requirements.txt`   
 
 ### Create project
-- Create 2 directories backend, py_client
-- `cd backend`
-- `django-admin startproject cfehome .`
-- Run `python manage.py runserver`
+- Create 2 directories backend, py_client  
+`cd backend`
+- Create project  
+`django-admin startproject cfehome .`
+- Run project  
+`python manage.py runserver`
+- Create app  
+`python manage.py startapp api`
 
 ###  Notes
 - Django project can have multiple Django apps
