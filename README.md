@@ -41,6 +41,7 @@ Check- `which python3`
 - Create 2 directories backend, py_client
 - `cd backend`
 - `django-admin startproject cfehome .`
+- Run `python manage.py runserver`
 
 ###  Notes
 - Django project can have multiple Django apps
