@@ -51,7 +51,8 @@ Check- `which python3`
 `pip install -r requirements.txt`
 
 ### Run
-`python manage.py runserver`
+`python manage.py runserver`  
+`python manage.py runserver 8000`
 
 # Django commands
 

@@ -1,14 +1,16 @@
 import json
-
 from django.http import JsonResponse
+from products.models import Product
+from django.forms.models import model_to_dict
+
+
+# from products.models import Product
 
 
 def api_home(request):
 
-    try:
-        json_data = json.loads(request.body)
-    except json.JSONDecodeError as e:
-        return JsonResponse({'error': 'Invalid JSON data'}, status=400)
-    print(json_data)
+    product = Product.objects.all().order_by("?").first()
+    data = model_to_dict(product)
+    # data = model_to_dict(product, fields= ['id'])
 
-    return JsonResponse({"message": "Hi, this is django"})
+    return JsonResponse(data)
