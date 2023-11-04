@@ -6,6 +6,9 @@ from django.forms.models import model_to_dict
 from products.serializers import PrimaryProductSerializer
 
 
+# JsonResponse is not suggested, it does not have CSF configured
+# Better use rest_framework
+
 def api_general_response(request):
     product = Product.objects.all().order_by("?").first()
     data = model_to_dict(product)
@@ -14,9 +17,26 @@ def api_general_response(request):
     return JsonResponse(data)
 
 
-@api_view(["GET"])
-def api_django_response(request):
-    product = Product.objects.all().order_by("?").first()
-    data = PrimaryProductSerializer(product).data
+@api_view(['GET', 'POST'])
+def api_django_response_get(request):
+    if request.method == 'GET':
+        product = Product.objects.all().order_by("?").first()
+        data = PrimaryProductSerializer(product).data
 
-    return Response(data)
+        return Response(data)
+    elif request.method == 'POST':
+        serializer = PrimaryProductSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+
+        return Response(serializer.errors, status=400)
+
+
+# @api_view(["POST"])
+# def api_django_response_post(request):
+#     serializer = PrimaryProductSerializer(data=request.body)
+#     if serializer.is_valid():
+#         print(serializer.data)
+#
+#     return Response(serializer.data)
