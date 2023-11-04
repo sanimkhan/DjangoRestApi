@@ -1,7 +1,7 @@
 from django.urls import path
-from . import views
+from .views import api_general_response, api_django_response_get
 
 urlpatterns = [
-    path('general-response', views.api_general_response),
-    path('django-response', views.api_django_response_get),
+    path('general-response', api_general_response),
+    path('django-response', api_django_response_get),
 ]

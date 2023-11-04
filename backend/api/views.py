@@ -31,12 +31,3 @@ def api_django_response_get(request):
             return Response(serializer.data, status=201)
 
         return Response(serializer.errors, status=400)
-
-
-# @api_view(["POST"])
-# def api_django_response_post(request):
-#     serializer = PrimaryProductSerializer(data=request.body)
-#     if serializer.is_valid():
-#         print(serializer.data)
-#
-#     return Response(serializer.data)
