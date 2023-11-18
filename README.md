@@ -1,26 +1,32 @@
-# Virtual environment
+# Django REST API Learning Project
+Welcome to my Django REST API learning project! 🚀
 
-## Virtual environment- Using CMD
+## Project Overview
+This repository serves as my dedicated space for learning Django and exploring the intricacies of REST API development. The goal is to build a solid foundation in Django and progressively delve into the world of creating powerful and efficient RESTful APIs.
 
-### Create virtual environment
+## Virtual environment
+
+### Using CMD
+
+#### Create virtual environment
 `python -m venv dev_env`
 
-###  Start/stop virtual environment
+####  Start/stop virtual environment
 Start- `source dev_env/bin/activate`  
 Stop- `deactivate`
 
-## Virtual environment- Using PyCharm
+### Using PyCharm
 
-### Create virtual environment
+#### Create virtual environment
 From IDE - https://www.youtube.com/watch?v=2P30W3TN4nI
 
-###  Start/stop/check virtual environment
+####  Start/stop/check virtual environment
 Start- `source venv/bin/activate`  
 Stop- `deactivate`  
 Check- `which python3`  
 (Python location will be from venv) 
 
-# Django project setup
+## Django project setup
 
 ### Install Django
 `pip install django`
@@ -54,7 +60,7 @@ Check- `which python3`
 `python manage.py runserver`  
 `python manage.py runserver 8000`
 
-# Django commands
+## Django commands
 
 ### Migrations
 `python manage.py makemigrations`  
@@ -67,13 +73,13 @@ Check- `which python3`
 ### Create user
 `python manage.py createsuperuser`
 
-###  Notes
+##  Notes
 - Django project can have multiple Django apps
 - Django project must have at least 1 app
 - 
 
 
-#  Tutorial
-## JWT authentication
+##  Tutorial
+### JWT authentication
 https://pythonguides.com/jwt-authentication-using-django-rest-framework/
 
