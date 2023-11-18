@@ -64,8 +64,16 @@ Check- `which python3`
 `python manage.py shell`
 `cntrl+z`
 
+### Create user
+`python manage.py createsuperuser`
 
 ###  Notes
 - Django project can have multiple Django apps
 - Django project must have at least 1 app
 - 
+
+
+#  Tutorial
+## JWT authentication
+https://pythonguides.com/jwt-authentication-using-django-rest-framework/
+
