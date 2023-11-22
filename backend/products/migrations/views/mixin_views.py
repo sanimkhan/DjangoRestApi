@@ -1,5 +1,7 @@
 from django.http import JsonResponse
 from rest_framework import generics, mixins, status
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
+
 from products.models import Product
 from products.serializers import PrimaryProductSerializer
 
@@ -11,12 +13,17 @@ class ProductMixin(mixins.ListModelMixin,
                    mixins.DestroyModelMixin,
                    generics.GenericAPIView):
     queryset = Product.objects.all()
+    # queryset = Product.objects.all().order_by('-id')
     serializer_class = PrimaryProductSerializer
+
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get(self, request, *args, **kwargs):
         if 'pk' in kwargs:
             return self.retrieve(request, *args, **kwargs)
         else:
+            sort_by = request.GET.get('sort', 'id')  # Default to sorting by ID ascending
+            self.queryset = self.queryset.order_by(sort_by)
             return self.list(request)
 
     def post(self, request, *args, **kwargs):
