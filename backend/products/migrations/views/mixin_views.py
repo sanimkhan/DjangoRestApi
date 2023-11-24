@@ -1,8 +1,8 @@
 from django.http import JsonResponse
 from rest_framework import generics, mixins, status
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 from products.models import Product
+from products.permissions import IsCustomer, IsAdmin, IsCustomerOrAdmin
 from products.serializers import PrimaryProductSerializer
 
 
@@ -16,7 +16,19 @@ class ProductMixin(mixins.ListModelMixin,
     # queryset = Product.objects.all().order_by('-id')
     serializer_class = PrimaryProductSerializer
 
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    # permission_classes = [IsAuthenticatedOrReadOnly]
+
+    def get_permissions(self):
+        if self.request.method == 'GET':
+            if 'pk' in self.kwargs:
+                self.permission_classes = [IsCustomer]
+            else:
+                self.permission_classes = [IsCustomerOrAdmin]
+        elif self.request.method == 'POST':
+            self.permission_classes = [IsAdmin]
+        elif self.request.method == 'DELETE':
+            self.permission_classes = [IsAdmin]
+        return super().get_permissions()
 
     def get(self, request, *args, **kwargs):
         if 'pk' in kwargs:
